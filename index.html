@@ -58,24 +58,10 @@ var url = "https://randomuser.me/api/?results=5";
       for (var x of users ) {
       appendTableRow(x);
   }
+  console.log (user);
   console.log (users);
     });
-    
 
-  function appendTableRow(user) {
-    var tableRow = `
-        <tr>
-            <td>${user.name.first}${user.name.last}</td>
-            <td>${user.location.country}</td>
-            <td>${user.dob.age}</td>
-            <td>${user.phone}</td>
-            <td>${user.email}</td>
-            <td>${user.gender}</td>
-            
-          </tr>   `;
-    table.innerHTML += tableRow;
-    console.log (tableRow);
-  }
 
   </script>
   
