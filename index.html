@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortable list of People</title>
+    <style>
+      * {
+        outline: 1px solid black;
+      }
+      td {
+        padding: 10px;
+      }
+    </style>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <input type="text" id="searchBar" />
+    <table id="table">
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Age</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Gender</th>
+      </tr>
+      <tr>
+        <td>Burma Rysmatova</td>
+        <td>Kyrgyzstan</td>
+        <td>18</td>
+        <td>+996508350578</td>
+        <td>rysmatovaburma@gmail.com</td>
+        <td>Female</td>
+      </tr>
+    </table>
+  </body>
+  <script>
+
+var results = null;
+var url = "https://randomuser.me/api/?results=5";
+  var table = document.getElementById ("table");
+  var searchBar = document.getElementById ("searchBar")
+
+  searchBar.addEventListener ("keyup", function (event){
+    console.log (event.target.value);
+  })
+  fetch (url) 
+  .then (function (response) {
+    return response.json ();
+  })
+
+  .then (function (response) {
+     var users = response.results; 
+     var results = response.results;
+     // creating a variable by default 
+      for (var x of users ) {
+      appendTableRow(x);
+  }
+  console.log (users);
+    });
+    
+
+  function appendTableRow(user) {
+    var tableRow = `
+        <tr>
+            <td>${user.name.first}${user.name.last}</td>
+            <td>${user.location.country}</td>
+            <td>${user.dob.age}</td>
+            <td>${user.phone}</td>
+            <td>${user.email}</td>
+            <td>${user.gender}</td>
+            
+          </tr>   `;
+    table.innerHTML += tableRow;
+    console.log (tableRow);
+  }
+
+  </script>
+  
+</html>
